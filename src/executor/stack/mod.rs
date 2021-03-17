@@ -218,6 +218,7 @@ impl<'config, S: StackState<'config>> StackExecutor<'config, S> {
 			Err(e) => return (e.into(), Vec::new()),
 		}
 
+		log::debug!(target: "evm", "bear: --- inc_nonce in transact call, caller {:?}", caller);
 		self.state.inc_nonce(caller);
 
 		let context = Context {
