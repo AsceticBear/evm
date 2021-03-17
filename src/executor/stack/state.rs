@@ -264,9 +264,9 @@ impl<'config> MemoryStackSubstate<'config> {
 		self.accounts.get_mut(&address).expect("New account was just inserted")
 	}
 
-	pub fn inc_nonce<B: Backend>(&mut self, address: H160, backend: &B) {
-		self.account_mut(address, backend).basic.nonce += U256::one();
-	}
+	// pub fn inc_nonce<B: Backend>(&mut self, address: H160, backend: &B) {
+	// 	self.account_mut(address, backend).basic.nonce += U256::one();
+	// }
 
 	pub fn set_storage(&mut self, address: H160, key: H256, value: H256) {
 		self.storages.insert((address, key), value);
@@ -357,7 +357,7 @@ pub trait StackState<'config>: Backend {
 	fn is_empty(&self, address: H160) -> bool;
 	fn deleted(&self, address: H160) -> bool;
 
-	fn inc_nonce(&mut self, address: H160);
+	// fn inc_nonce(&mut self, address: H160);
 	fn set_storage(&mut self, address: H160, key: H256, value: H256);
 	fn reset_storage(&mut self, address: H160);
 	fn log(&mut self, address: H160, topics: Vec<H256>, data: Vec<u8>);
@@ -449,9 +449,9 @@ impl<'backend, 'config, B: Backend> StackState<'config> for MemoryStackState<'ba
 		self.substate.deleted(address)
 	}
 
-	fn inc_nonce(&mut self, address: H160) {
-		self.substate.inc_nonce(address, self.backend);
-	}
+	// fn inc_nonce(&mut self, address: H160) {
+	// 	self.substate.inc_nonce(address, self.backend);
+	// }
 
 	fn set_storage(&mut self, address: H160, key: H256, value: H256) {
 		self.substate.set_storage(address, key, value)

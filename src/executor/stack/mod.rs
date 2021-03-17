@@ -218,8 +218,8 @@ impl<'config, S: StackState<'config>> StackExecutor<'config, S> {
 			Err(e) => return (e.into(), Vec::new()),
 		}
 
-		log::debug!(target: "evm", "bear: --- inc_nonce in transact call, caller {:?}", caller);
-		self.state.inc_nonce(caller);
+		// log::debug!(target: "evm", "bear: --- inc_nonce in transact call, caller {:?}", caller);
+		// self.state.inc_nonce(caller);
 
 		let context = Context {
 			caller,
@@ -337,7 +337,7 @@ impl<'config, S: StackState<'config>> StackExecutor<'config, S> {
 		);
 
 		let address = self.create_address(scheme);
-		self.state.inc_nonce(caller);
+		// self.state.inc_nonce(caller);
 
 		self.enter_substate(gas_limit, false);
 
@@ -373,9 +373,9 @@ impl<'config, S: StackState<'config>> StackExecutor<'config, S> {
 			},
 		}
 
-		if self.config.create_increase_nonce {
-			self.state.inc_nonce(address);
-		}
+		// if self.config.create_increase_nonce {
+		// 	self.state.inc_nonce(address);
+		// }
 
 		let mut runtime = Runtime::new(
 			Rc::new(init_code),
