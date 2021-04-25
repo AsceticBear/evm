@@ -508,6 +508,7 @@ impl<'config, S: StackState<'config>> StackExecutor<'config, S> {
 					Capture::Exit((ExitReason::Succeed(s), out))
 				},
 				Err(e) => {
+					log::debug!(target: "evm", "Run precompile error {:?}", e);
 					let _ = self.exit_substate(StackExitKind::Failed);
 					Capture::Exit((ExitReason::Error(e), Vec::new()))
 				},
